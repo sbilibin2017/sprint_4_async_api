@@ -1,0 +1,93 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres:15
+    volumes:
+      - ./env:/env
+      - ./postgres/dump_09032023.sql:/docker-entrypoint-initdb.d/dump_09032023.sql
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - ./env/postgres/.env.dev
+
+  elasticsearch:
+    image: elasticsearch:7.7.0
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch-one/data
+    ports:
+      - 9200:9200
+    env_file:
+      - ./env/elasticsearch/.env.dev
+
+  kibana:
+    container_name: kibana
+    image: kibana:7.7.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+
+  redis:
+    image: redis:7.0.8
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+    env_file:
+      - ./env/redis/.env.dev
+
+  etl_postgres_to_elastic:
+    build:
+      context: ./etl_postgres_to_elastic
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./env:/env
+    depends_on:
+      - elasticsearch
+      - redis
+    env_file:
+      - ./env/api/.env.dev
+      - ./env/postgres/.env.dev
+      - ./env/redis/.env.dev
+      - ./env/docker/.env.dev
+      - ./env/elasticsearch/.env.dev
+  api:
+    build:
+      context: ./fastapi/src
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./env:/env
+      - ./fastapi/src:/src
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+      - elasticsearch
+      - redis
+      - etl_postgres_to_elastic
+    env_file:
+      - ./env/api/.env.dev
+      - ./env/postgres/.env.dev
+      - ./env/redis/.env.dev
+      - ./env/docker/.env.dev
+      - ./env/elasticsearch/.env.dev
+      - ./env/.env
+
+volumes:
+  postgres_data:
+  elasticsearch_data:
+  redis_data:
+
+

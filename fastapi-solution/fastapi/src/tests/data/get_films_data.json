@@ -1,0 +1,67 @@
+{
+    "items": [
+        {
+            "id": "2a090dde-f688-46fe-a9f4-b781a985275e",
+            "imdb_rating": 9.6,
+            "genre": [
+                "Action",
+                "Fantasy",
+                "Adventure"
+            ],
+            "title": "Star Wars: Knights of the Old Republic",
+            "description": "Four thousand years before the fall of the Republic, before the fall of the Jedi, a great war was fought, between the armies of the Sith and the forces of the Republic. A warrior is chosen to rescue a Jedi with a power important to the cause of the Republic, but in the end, will the warrior fight for the Light Side of the Force, or succumb to the Darkness?",
+            "director": [
+                "Casey Hudson"
+            ],
+            "actors_names": [
+                "Rafael Ferrer",
+                "Jennifer Hale",
+                "John Cygan",
+                "Raphael Sbarge"
+            ],
+            "writers_names": [
+                "James Ohlen",
+                "Michael Gallo",
+                "David Gaider",
+                "Drew Karpyshyn",
+                "Brett Rector",
+                "Lukas Kristjanson",
+                "Peter Thomas",
+                "Lynn Taylor"
+            ]
+        },
+        {
+            "id": "c241874f-53d3-411a-8894-37c19d8bf010",
+            "imdb_rating": 9.5,
+            "genre": [
+                "Short",
+                "Sci-Fi"
+            ],
+            "title": "Star Wars SC 38 Reimagined",
+            "description": "\"Scene 38 ReImagined\" is about the final confrontation between Ben Kenobi and Darth Vader in \"A New Hope\" nearly 20 years after the events of \"Revenge Of The Sith.\" This is a one-off story ...",
+            "director": [
+                "Philip J Silvera"
+            ],
+            "actors_names": [
+                "Richard Cetrone",
+                "Dan Brown"
+            ],
+            "writers_names": []
+        },
+        {
+            "id": "05d7341e-e367-4e2e-acf5-4652a8435f93",
+            "imdb_rating": 9.5,
+            "genre": [
+                "Documentary"
+            ],
+            "title": "The Secret World of Jeffree Star",
+            "description": "Shane Dawson interviews and spends a day with one of the most interesting and controversial people on the internet, Jeffrey Star, in a five part series.",
+            "director": [],
+            "actors_names": [
+                "Jeffree Star",
+                "Shane Dawson"
+            ],
+            "writers_names": []
+        }
+    ]
+}
